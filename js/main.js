@@ -1,5 +1,4 @@
 $(()=>{
-    // addMessages({name:"Parth", message:"Hi, there"});
     clickSend();
     getMessages();
 });
@@ -14,9 +13,14 @@ function getMessages(){
     });
 }
 
+function postMessage(message){
+    $.post('http://localhost:3000/messages', message);
+}
+
 function clickSend(){
     $('#send').on('click',()=>{
-        // var name = $('.nme-input').value();
-        addMessages({name:$('.nme-input').val(), message: "it works"});
+        var message = {name:$('#name').val(), message:$('#message').val()};
+        postMessage(message);
+        addMessages(message);
     });
 }
